@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block header %}
+<title>Live Counter</title>
+{% endblock header %}
+{% block content %}
+{% endblock %}
+{% block require %}
+<script>
+goog.require('yo.apps.LiveCounter');
+</script>
+{% endblock %}
+{% block script %}
+    <script>
+        var CLOSURE_NO_DEPS = true;
+        var initYo = function(debug) {
+            if (debug) {
+                initYo_();
+            } else {
+                errorReporter = yo.ErrorReporter.getInstance();
+                errorReporter.protectAdditionalEntryPoint(initYo_)();
+            }
+        }
+        var initYo_ = function() {
+            {% if user %}
+                yo.security.AuthManager.setCurrentUser({{ user|tojson|safe }});
+            {% endif %}
+            yo.csrf.setToken('{{ csrf_token() }}');
+            var livecounter = new yo.apps.LiveCounter();
+            livecounter.render();
+        };
+        {% if not config.DEBUG %}
+            (function () {
+                var r = false;
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = '{{ config.STATIC_FILE_PREFIX }}/public/js/prod.js';
+                s.onload = s.onreadystatechange = function() {
+                    if (!r && (!this.readyState || this.readyState == 'complete')) {
+                        r = true;
+                        initYo(false);
+                    }
+                };
+                var x = document.getElementsByTagName('script')[0];
+                x.parentNode.insertBefore(s, x);
+            })();
+        {% else %}
+            initYo(true);
+        {% endif %}
+    </script>
+{% endblock %}
+{% block footer %}
+{% endblock %}

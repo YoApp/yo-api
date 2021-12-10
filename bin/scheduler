@@ -1,0 +1,4 @@
+#!/bin/bash
+
+bash nutcracker_run.sh -m 512 &
+python scheduler.py --config yoapi.config.Production

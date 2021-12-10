@@ -1,0 +1,4 @@
+#!/bin/bash
+
+bash nutcracker_run.sh -m 512 &
+python worker.py --queue low --pool-size 30

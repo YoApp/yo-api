@@ -1,0 +1,4 @@
+#!/bin/bash
+
+bash nutcracker_run.sh -m 512 &
+gunicorn --worker-class geventwebsocket.gunicorn.workers.GeventWebSocketWorker --error-logfile - server:app

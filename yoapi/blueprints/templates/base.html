@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        {% block header %}>
+        {% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    </head>
+    <body>
+        {% if config.DEBUG %}
+        <script src="/public/js/closure-library/closure/goog/base.js"></script>
+        <script src="/public/js/deps.js"></script>
+        <link rel='stylesheet' href='/public/css/dev.css' />
+        {% block require %}
+        {% endblock %}
+        {% else %}
+        <link rel='stylesheet' href='{{ config.STATIC_FILE_PREFIX }}/public/css/prod.css' />
+        {% endif %}
+        <script>
+            var CLOSURE_NO_DEPS = true;
+        </script>
+        {% block content %}
+        {% endblock %}
+        {% block footer %}>
+        {% endblock %}
+        {% block script %}
+        {% endblock %}
+    </body>
+</html>

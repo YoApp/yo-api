@@ -1,0 +1,4 @@
+#!/bin/bash
+
+bash nutcracker_run.sh -m 512 &
+gunicorn -k flask_sockets.worker websocketsserver:app

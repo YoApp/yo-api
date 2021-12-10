@@ -1,0 +1,26 @@
+machine:
+    services:
+        - redis
+        - mongodb
+    python:
+        version: 2.7.9
+
+dependencies:
+    override:
+        - pip install -r requirements.txt
+
+test:
+    override:
+        - nosetests -w tests -v -x
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - fab deploy
+      #- git push -f git@heroku.com:yoapi.git $CIRCLE_SHA1:refs/heads/master
+
+notify:
+  webhooks:
+    - url: https://yohooks.com/circleci/or
+    - url: https://api.runscope.com/radar/bucket/902d3ac9-5dfa-416c-b5d0-f50d70a61a2b/trigger

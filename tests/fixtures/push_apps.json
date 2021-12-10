@@ -1,0 +1,34 @@
+{
+    "class_name": "PushApp",
+    "items":
+[
+    {
+        "app_name": "💦 Water Tracker",
+        "category": "Health",
+        "description": "We help you track your water",
+        "configuration": [
+                {
+                "type":"select",
+                "title":"What is your goal?",
+                "options":["2 cups",
+                                        "4 cups",
+                                        "6 cups",
+                                        "8 cups"]
+                },
+                {
+                "type":"select",
+                "title":"When do you start your day?",
+                "options":["6am-7am",
+                                        "7am -8am",
+                                        "8am - 9am",
+                                        "9am - 10am"]
+                }
+        ],
+        "banner_url": "https://yo-index-images.s3.amazonaws.com/mini-app-images/banner/waterlogbannerpicture.png",
+        "icon_url": "https://yo-index-images.s3.amazonaws.com/mini-app-images/profile/waterlogprofilepicture.png",
+        "is_featured": false,
+        "app_sound": "yo.mp3"
+    }
+]
+}
+
